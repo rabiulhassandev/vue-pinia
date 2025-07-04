@@ -1,6 +1,6 @@
 # 🎮 ScoreStrike
 
-ScoreStrike is a simple turn-based game built using **Vue 3**, **Pinia**, and **Vite**.  
+its is a simple turn-based game built using **Vue 3**, **Pinia**, and **Vite**.  
 Attack or defend your way to victory by reaching the target score before your attempts run out!
 
 ---
