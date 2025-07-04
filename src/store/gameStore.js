@@ -1,56 +1,83 @@
 import { defineStore } from "pinia";
+import { ref, computed } from "vue";
 
-export const useGameStore = defineStore("gameStore", {
-    state: () => ({
-        score: 0,
-        maxAttack: 30,
-        maxDefense: 10,
-        attempt: 0,
-        maxAttempt: 10,
-        winScore: 100,
-        isGameOver: false,
-    }),
-    getters: {
-        // get score
-        getAttempt() {
-            return this.attempt;
-        },
-    },
-    actions: {
-        // set next attact
-        setNextAttack() {
-            let attact = Math.floor(Math.random() * this.maxAttack) + 1;
-            console.log(`Attack: ${attact}`);
-            this.attempt++;
-            this.score += attact;
+export const useGameStore = defineStore("gameStore", () => {
+    const score = ref(0);
+    const maxAttack = ref(20);
+    const maxDefense = ref(10);
+    const attempt = ref(0);
+    const maxAttempt = ref(10);
+    const winScore = ref(100);
+    const isGameStarted = ref(false);
+    const isGameOver = ref(false);
 
-            // check if game is over
-            if (this.attempt >= this.maxAttempt || this.score >= this.winScore) {
-                this.isGameOver = true;
-                console.log("Game Over");
-            }
-        },
+    const getAttempt = computed(()=> attempt.value);
 
-        // set next defense
-        setNextDefense() {
-            let defense = Math.floor(Math.random() * this.maxDefense) + 1;
-            console.log(`Defense: ${defense}`);
-            this.attempt++;
-            this.score -= defense;
+    // set next attact
+    const setNextAttack = () => {
+        if (!isGameStarted.value || isGameOver.value) return; // check if game is started and not over
 
-            // check if game is over
-            if (this.attempt >= this.maxAttempt || this.score >= 100) {
-                this.isGameOver = true;
-                console.log("Game Over");
-            }
-        },
+        let attact = Math.floor(Math.random() * maxAttack.value) + 1;
+        console.log(`Attack: ${attact}`);
+        attempt.value++;
+        score.value += attact;
 
-        // reset game
-        resetGame() {
-            this.score = 0;
-            this.attempt = 0;
-            this.isGameOver = false;
-            console.log("Game Reset");
-        },
-    },
+        // check if game is over
+        if (attempt.value >= maxAttempt.value || score.value >= winScore.value) {
+            isGameOver.value = true;
+            console.log("Game Over");
+        }
+    };
+
+    // set next defense
+    const setNextDefense = () => {
+        if (!isGameStarted.value || isGameOver.value) return; // check if game is started and not over
+
+        let defense = Math.floor(Math.random() * maxDefense.value) + 1;
+        console.log(`Defense: ${defense}`);
+        attempt.value++;
+        score.value -= defense;
+
+        // check if game is over
+        if (attempt.value >= maxAttempt.value || score.value >= 100) {
+            isGameOver.value = true;
+            console.log("Game Over");
+        }
+    };
+
+    // reset game
+    const resetGame = () => {
+        score.value = 0;
+        attempt.value = 0;
+        isGameStarted.value = false;
+        isGameOver.value = false;
+        console.log("Game Reset");
+    };
+
+    // start game
+    const startGame = () => {
+        resetGame();
+        isGameStarted.value = true;
+        console.log("Game Started");
+    };
+
+
+    return {
+        // state variables
+        score,
+        maxAttack,
+        maxDefense,
+        attempt,
+        maxAttempt,
+        winScore,
+        isGameStarted,
+        isGameOver,
+
+
+        // getters
+        getAttempt, 
+        
+        // actions
+        setNextAttack, setNextDefense, resetGame, startGame
+    };
 })
