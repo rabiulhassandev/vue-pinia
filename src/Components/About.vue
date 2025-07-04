@@ -6,7 +6,7 @@ import MobileView from "@/Layouts/MobileView.vue";
     <MobileView>
         <section class="min-h-screen bg-gray-900 text-white py-12 px-6 flex items-center justify-center">
             <div class="text-center">
-                <h4 class="text-warning mb-3">About This Game</h4>
+                <h5 class="text-warning mb-3">About This Game</h5>
                 <p>
                     its a simple yet engaging turn-based game i tried to create using
                     <strong>Vue 3</strong> and <strong>Pinia</strong>.
@@ -21,7 +21,7 @@ import MobileView from "@/Layouts/MobileView.vue";
                 <hr>
 
                 <h5 class="text-warning mb-3 pt-2">Tech Stack</h5>
-                <ul class="list-disc list-inside text-muted text-start">
+                <ul class="list-disc list-inside text-muted text-start mb-5">
                     <li>Vue 3 Composition API</li>
                     <li>Pinia (State Management)</li>
                     <li>Bootstrap 5</li>
