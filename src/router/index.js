@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import App from '@/App.vue'
+import Home from '@/Components/Home.vue'
+import Info from '@/Components/Info.vue'
+import About from '@/Components/About.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,9 +9,20 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: App,
+      component: Home
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: About
+    },
+    {
+      path: '/info',
+      name: 'info',
+      component: Info
     }
   ],
+  linkActiveClass: "active",
 })
 
 export default router
