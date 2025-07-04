@@ -3,7 +3,6 @@ import { defineStore } from "pinia";
 export const useGameStore = defineStore("gameStore", {
     state: () => ({
         score: 0,
-        maxHealth: 100,
         maxAttack: 30,
         maxDefense: 10,
         attempt: 0,
@@ -16,10 +15,6 @@ export const useGameStore = defineStore("gameStore", {
         getAttempt() {
             return this.attempt;
         },
-
-        health: (state) => state.maxHealth,
-        attack: (state) => state.maxAttack,
-        defense: (state) => state.maxDefense,
     },
     actions: {
         // set next attact

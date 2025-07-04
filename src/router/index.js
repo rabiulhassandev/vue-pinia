@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/Components/Home.vue'
-import Info from '@/Components/Info.vue'
+import Settings from '@/Components/Settings.vue'
 import About from '@/Components/About.vue'
 
 const router = createRouter({
@@ -17,9 +17,9 @@ const router = createRouter({
       component: About
     },
     {
-      path: '/info',
-      name: 'info',
-      component: Info
+      path: '/settings',
+      name: 'settings',
+      component: Settings
     }
   ],
   linkActiveClass: "active",
